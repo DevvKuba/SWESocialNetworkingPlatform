@@ -8,6 +8,7 @@ namespace API.Extensions
 {
     public static class IdentityServiceExtensions
     {
+        // working on further rules when creating password
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,
             IConfiguration config)
         {
