@@ -25,7 +25,7 @@
             </p>
           </div>
           <div>
-            <strong>Age:</strong>
+            <strong>Years of Experience</strong>
             <p>
               {{member.age}}
             </p>
@@ -59,7 +59,7 @@
       <tabset class="member-tabset">
         <tab heading="About {{member.knownAs}}">
           <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
-          <h4 class="mt-2">Description</h4>
+          <h4 class="mt-2">About</h4>
           <textarea class="form-control"
            name="introduction"
            [(ngModel)]="member.introduction"
@@ -67,7 +67,7 @@
           >
           </textarea>
 
-          <h4 class="mt-2">Looking For</h4>
+          <h4 class="mt-2">Skills</h4>
           <textarea class="form-control"
            name="lookingFor"
            [(ngModel)]="member.lookingFor"

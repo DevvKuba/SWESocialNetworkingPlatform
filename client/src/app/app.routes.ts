@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberNetworkingComponent } from './members/member-list/member-networking.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { ListsComponent } from './lists/lists.component';
+import { InsightsComponent } from './insights/insights.component';
 import { MessagesComponent } from './messages/messages.component';
 import { authGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -17,17 +17,16 @@ import { adminGuard } from './_guards/admin.guard';
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {
-
     // authGuard set up for specific routes
     path:'',
     runGuardsAndResolvers: 'always',
     canActivate: [authGuard],
     children: [
-      {path: 'members', component: MemberListComponent},
+      {path: 'members', component: MemberNetworkingComponent},
       {path: 'members/:username', component: MemberDetailComponent,
        resolve: {member: memberDetailedResolver}},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate:[preventUnsavedChangesGuard]},
-      {path: 'lists', component: ListsComponent},
+      {path: 'insights', component: InsightsComponent},
       {path: 'messages', component: MessagesComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
     ]
