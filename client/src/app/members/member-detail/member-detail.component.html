@@ -20,8 +20,9 @@
             </p>
           </div>
           <div>
-            <strong>Age:</strong>
+            <strong>Years of Experience:</strong>
             <p>
+              <!-- to change -->
               {{member.age}}
             </p>
           </div>
@@ -51,9 +52,12 @@
     <div class="col-8">
       <tabset class="member-tabset" #memberTabs>
         <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
-          <h4>Description</h4>
+          <h4>About</h4>
+          <!-- to change -->
           <p>{{member.introduction}}</p>
-          <h4>Looking for</h4>
+
+          <h4>Skills</h4>
+           <!-- to change -->
           <p>{{member.lookingFor}}</p>
         </tab>
 
@@ -61,6 +65,8 @@
           <h4>Interests</h4>
           <p>{{member.interests}}</p>
           </tab>
+          
+          <!-- potentially refactor into posts later down the line -->
         <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)">
           @if(photoTab.active){
           <gallery [items]="images"

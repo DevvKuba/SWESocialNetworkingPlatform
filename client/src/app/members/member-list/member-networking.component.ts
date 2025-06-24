@@ -9,12 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @Component({
-  selector: 'app-member-list',
+  selector: 'app-member-networking',
   imports: [MemberCardComponent, PaginationModule, FormsModule, ButtonsModule],
-  templateUrl: './member-list.component.html',
-  styleUrl: './member-list.component.css'
+  templateUrl: './member-networking.component.html',
+  styleUrl: './member-networking.component.css'
 })
-export class MemberListComponent implements OnInit{
+export class MemberNetworkingComponent implements OnInit{
   memberService = inject(MembersService);
   genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}]
   
