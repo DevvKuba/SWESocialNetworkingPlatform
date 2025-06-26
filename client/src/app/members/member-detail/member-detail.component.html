@@ -22,8 +22,7 @@
           <div>
             <strong>Years of Experience:</strong>
             <p>
-              <!-- to change -->
-              {{member.age}}
+              {{member.yearsOfExperience}}
             </p>
           </div>
           <div>
@@ -53,12 +52,10 @@
       <tabset class="member-tabset" #memberTabs>
         <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
           <h4>About</h4>
-          <!-- to change -->
           <p>{{member.introduction}}</p>
 
           <h4>Skills</h4>
-           <!-- to change -->
-          <p>{{member.lookingFor}}</p>
+          <p>{{member.skills}}</p>
         </tab>
 
         <tab heading="Interest" (selectTab)="onTabActivated($event)">

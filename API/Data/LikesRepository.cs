@@ -40,14 +40,14 @@ namespace API.Data
 
             switch (likesParams.Predicate)
             {
-                case "liked":
+                case "followed":
                     query = likes
                         .Where(x => x.SourceUserId == likesParams.UserId)
                         .Select(x => x.TargetUser)
                         .ProjectTo<MemberDto>(mapper.ConfigurationProvider);
                     break;
 
-                case "likedBy":
+                case "followedBy":
                     query = likes
                         .Where(x => x.TargetUserId == likesParams.UserId)
                         .Select(x => x.SourceUser)

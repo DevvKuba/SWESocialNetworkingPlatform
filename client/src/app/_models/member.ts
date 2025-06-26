@@ -14,6 +14,8 @@ export interface Member {
   city: string
   country: string
   //new
-  lookingFor: string
+  skills: string
+  yearsOfExperience: number
+  specialization: string
   photos: Photo[]
 }
