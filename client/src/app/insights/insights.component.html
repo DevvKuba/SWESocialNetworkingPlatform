@@ -6,11 +6,11 @@
 <div class="container mt-3">
   <div class="d-flex">
     <div class="btn-group">
-      <button class="btn btn-primary" btnRadio="liked" [(ngModel)]="predicate" (click)="loadLikes()">Members I follow</button>
+      <button class="btn btn-primary" btnRadio="followed" [(ngModel)]="predicate" (click)="loadFollowers()">Members I follow</button>
 
-      <button class= "btn btn-primary" btnRadio="likedBy" [(ngModel)]="predicate" (click)="loadLikes()">Members who follow me</button>
+      <button class= "btn btn-primary" btnRadio="followedBy" [(ngModel)]="predicate" (click)="loadFollowers()">Members who follow me</button>
 
-      <button class= "btn btn-primary" btnRadio="mutual" [(ngModel)]="predicate" (click)="loadLikes()">Mutual</button>
+      <button class= "btn btn-primary" btnRadio="mutual" [(ngModel)]="predicate" (click)="loadFollowers()">Mutual</button>
     </div>
   </div>
 

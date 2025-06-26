@@ -5,7 +5,7 @@
     {
         public int UserId { get; set; }
 
-        public required string Predicate { get; set; } = "liked";
+        public required string Predicate { get; set; } = "followed";
 
     }
 }

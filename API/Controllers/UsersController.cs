@@ -42,7 +42,6 @@ namespace API.Controllers
 
             return user;
 
-
         }
 
         // put requests to update database

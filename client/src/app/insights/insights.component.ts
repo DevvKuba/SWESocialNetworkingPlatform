@@ -13,30 +13,30 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 })
 export class InsightsComponent implements OnInit,OnDestroy {
   likesService = inject(FollowService);
-  predicate = 'liked';
+  predicate = 'followed';
   pageNumber = 1;
   pageSize = 5;
 
   ngOnInit(): void {
-    this.loadLikes();
+    this.loadFollowers();
   }
 
   getTitle(){
     switch (this.predicate){
-      case 'liked': return 'Members you like';
-      case 'likedBy': return 'Members who like you';
+      case 'followed': return 'Members you follow';
+      case 'followedBy': return 'Members who follow you';
       default: return 'Mutual';
     }
   }
 
-  loadLikes(){
+  loadFollowers(){
     this.likesService.getFollow(this.predicate, this.pageNumber, this.pageSize);
   }
 
   pageChanged(event: any){
     if(this.pageNumber !== event.page){
       this.pageNumber = event.page;
-      this.loadLikes();
+      this.loadFollowers();
     }
   }
 

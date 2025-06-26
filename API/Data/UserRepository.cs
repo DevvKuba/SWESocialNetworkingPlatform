@@ -42,10 +42,13 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             query = query.Where(x => x.Gender == userParams.Gender);
         }
 
-        var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
-        var maxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge));
+        //var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
+        //var maxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge));
 
-        query = query.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= maxDob);
+        var minExperience = userParams.MinExperience;
+        var maxExperience = userParams.MaxExperience;
+
+        query = query.Where(x => x.YearsOfExperience >= minExperience && x.YearsOfExperience <= maxExperience);
 
         query = userParams.OrderBy switch
         {

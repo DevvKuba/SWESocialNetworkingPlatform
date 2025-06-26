@@ -34,8 +34,8 @@ export class MembersService {
 
     let params = setPaginationHeaders(this.userParams().pageNumber, this.userParams().pageSize);
 
-    params = params.append('minAge', this.userParams().minAge);
-    params = params.append('maxAge', this.userParams().maxAge);
+    params = params.append('minExperience', this.userParams().minExperience);
+    params = params.append('maxExperience', this.userParams().maxExperience);
     params = params.append('gender', this.userParams().gender);
     params = params.append('orderBy', this.userParams().orderBy);
 

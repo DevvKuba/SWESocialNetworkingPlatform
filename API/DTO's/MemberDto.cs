@@ -25,7 +25,8 @@
 
         public string? Interests { get; set; }
 
-        public string? LookingFor { get; set; }
+        // refactored
+        public string? Skills { get; set; }
 
         public string? City { get; set; }
 

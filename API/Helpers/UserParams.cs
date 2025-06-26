@@ -6,9 +6,9 @@
 
         public string? CurrentUserName { get; set; }
 
-        public int MinAge { get; set; } = 18;
+        public int MinExperience { get; set; } = 1;
 
-        public int MaxAge { get; set; } = 100;
+        public int MaxExperience { get; set; } = 15;
 
         public string OrderBy { get; set; } = "lastActive";
 
