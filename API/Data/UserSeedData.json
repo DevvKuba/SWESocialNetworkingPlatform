@@ -11,6 +11,8 @@
         "Interests": "Sit sit incididunt proident velit.",
         "City": "Greenbush",
         "Country": "Martinique",
+        "YearsOfExperience": 15,
+        "Specialization": "DevOps Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/54.jpg",
@@ -30,6 +32,8 @@
         "Interests": "Dolor aliquip velit amet aliqua minim labore sit laboris non aliquip cillum.",
         "City": "Celeryville",
         "Country": "Grenada",
+        "YearsOfExperience": 4,
+        "Specialization": "Front-end Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/50.jpg",
@@ -49,6 +53,8 @@
         "Interests": "Commodo do eiusmod quis labore est non.",
         "City": "Rosewood",
         "Country": "Svalbard and Jan Mayen Islands",
+        "YearsOfExperience": 20,
+        "Specialization": "Back-end Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/14.jpg",
@@ -68,6 +74,8 @@
         "Interests": "Duis in est laboris anim pariatur incididunt mollit laboris ea velit aliquip cillum.",
         "City": "Orviston",
         "Country": "Zimbabwe",
+        "YearsOfExperience": 8,
+        "Specialization": "Full Stack Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/11.jpg",
@@ -87,6 +95,8 @@
         "Interests": "Elit Lorem aliquip deserunt cupidatat ex aliquip ullamco.",
         "City": "Germanton",
         "Country": "Antigua and Barbuda",
+        "YearsOfExperience": 18,
+        "Specialization": "QA Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/84.jpg",
@@ -106,6 +116,8 @@
         "Interests": "Esse cillum deserunt fugiat deserunt irure ea esse deserunt quis exercitation velit do nisi reprehenderit.",
         "City": "Cliff",
         "Country": "British Indian Ocean Territory",
+        "YearsOfExperience": 25,
+        "Specialization": "Software Architect",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/90.jpg",
@@ -125,6 +137,8 @@
         "Interests": "Aliquip proident pariatur excepteur incididunt irure et.",
         "City": "Welda",
         "Country": "Christmas Island",
+        "YearsOfExperience": 12,
+        "Specialization": "Cloud Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/87.jpg",
@@ -144,6 +158,8 @@
         "Interests": "Duis consectetur proident labore velit minim irure proident incididunt officia duis.",
         "City": "Clarence",
         "Country": "Burkina Faso",
+        "YearsOfExperience": 5,
+        "Specialization": "Mobile Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/57.jpg",
@@ -163,6 +179,8 @@
         "Interests": "Pariatur qui ut commodo laboris officia.",
         "City": "Herald",
         "Country": "Poland",
+        "YearsOfExperience": 30,
+        "Specialization": "Database Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/11.jpg",
@@ -182,6 +200,8 @@
         "Interests": "Labore consectetur labore ut nulla voluptate nulla quis labore tempor dolor laborum.",
         "City": "Lupton",
         "Country": "Luxembourg",
+        "YearsOfExperience": 10,
+        "Specialization": "Security Engineer",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/93.jpg",

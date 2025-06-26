@@ -7,6 +7,10 @@
 
         public int Age { get; set; }
 
+        public int YearsOfExperience { get; set; }
+
+        public string? Specialization { get; set; }
+
         public string? PhotoUrl { get; set; }
 
         public string? KnownAs { get; set; }
