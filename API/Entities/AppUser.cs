@@ -10,6 +10,10 @@ public class AppUser : IdentityUser<int>
 
     public required string KnownAs { get; set; }
 
+    public int YearsOfExperience { get; set; }
+
+    public string? Specialization { get; set; }
+
     public DateTime Created { get; set; } = DateTime.UtcNow;
 
     public DateTime LastActive { get; set; } = DateTime.UtcNow;
@@ -28,7 +32,6 @@ public class AppUser : IdentityUser<int>
 
     public List<Photo> Photos { get; set; } = [];
 
-
     public List<UserLike> LikedByUsers { get; set; } = [];
 
     public List<UserLike> LikedUsers { get; set; } = [];
@@ -37,7 +40,7 @@ public class AppUser : IdentityUser<int>
 
     public List<Message> MessagesRecieved { get; set; } = [];
 
-    // join table
+    // join 
     public ICollection<AppUserRole> UserRoles { get; set; } = [];
 
 
