@@ -32,9 +32,12 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       knownAs: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      password:['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
+      specialization: ['', Validators.required],
+      yearsOfExperience: ['', Validators.required],
+      email: ['', Validators.required],
+      // city: ['', Validators.required],
+      // country: ['', Validators.required],
+      password:['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
     // makes password field also adhere to matching to confirmPassword field

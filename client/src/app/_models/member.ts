@@ -17,5 +17,6 @@ export interface Member {
   skills: string
   yearsOfExperience: number
   specialization: string
+  email: string
   photos: Photo[]
 }

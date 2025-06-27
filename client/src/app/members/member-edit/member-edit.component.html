@@ -1,4 +1,5 @@
 @if(member){
+<form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
   <div class="row">
     <div class="col-4">
       <h1>Your profile</h1>
@@ -18,22 +19,34 @@
          class="card-img img-thumbnail">
 
          <div class="card-body">
+        
            <div>
             <strong>Specialization:</strong>
-            <p>
+            <textarea class="form-control"
+             style="width: 150px; height: 10px;"
+             name="specialization"
+             [(ngModel)]="member.specialization"
+             rows="1"
+             >
               {{member.specialization}}
-            </p>
+            </textarea>
           </div>
+          <div>
+            <strong>Years of Experience</strong>
+            <textarea class="form-control"
+             style="width: 150px; height: 10px;"
+             name="yearsOfExperience"
+             [(ngModel)]="member.yearsOfExperience"
+             rows="1"
+             >
+              {{member.yearsOfExperience}}
+            </textarea>
+          </div>
+       
           <div>
             <strong>Location:</strong>
             <p>
               {{member.city}}, {{member.country}}
-            </p>
-          </div>
-          <div>
-            <strong>Years of Experience</strong>
-            <p>
-              {{member.yearsOfExperience}}
             </p>
           </div>
           <div>
@@ -64,7 +77,6 @@
     <div class="col-8">
       <tabset class="member-tabset">
         <tab heading="About {{member.knownAs}}">
-          <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
           <h4 class="mt-2">About</h4>
           <textarea class="form-control"
            name="introduction"
@@ -75,7 +87,7 @@
 
           <h4 class="mt-2">Skills</h4>
           <textarea class="form-control"
-           name="lookingFor"
+           name="skills"
            [(ngModel)]="member.skills"
            rows="6"
           >
@@ -86,6 +98,14 @@
            name="interests"
            [(ngModel)]="member.interests"
            rows="6"
+          >
+          </textarea>
+
+          <h5 class="mt-2">Email</h5>
+          <textarea class="form-control"
+           name="email"
+           [(ngModel)]="member.email"
+           rows="1"
           >
           </textarea>
 
@@ -106,7 +126,6 @@
               name="country"
               >
           </div>
-        </form>
         </tab>
 
         <tab heading="Edit photos">
@@ -115,5 +134,6 @@
       </tabset>
     </div>
   </div>
-
+</form>
 }
+

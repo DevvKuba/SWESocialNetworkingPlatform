@@ -22,17 +22,22 @@
   [label] = "'Known as'"
   ></app-text-input>
 
-  <!-- <app-text-input
-  [formControl]="$any(registerForm.controls['yearsOfExp'])"
-  [label] = "'Years of experience'"
-  ></app-text-input> -->
-
     <app-date-picker
   [formControl]="$any(registerForm.controls['dateOfBirth'])"
   [label] = "'Date of birth'" [maxDate]="maxDate"
   ></app-date-picker>
 
-    <app-text-input
+  <app-text-input
+  [formControl]="$any(registerForm.controls['specialization'])"
+  [label] = "'Specialization'"
+  ></app-text-input>
+
+  <app-text-input
+  [formControl]="$any(registerForm.controls['yearsOfExperience'])"
+  [label] = "'Years of experience'"
+  ></app-text-input>
+
+    <!-- <app-text-input
   [formControl]="$any(registerForm.controls['city'])"
   [label] = "'City'"
   ></app-text-input>
@@ -40,6 +45,11 @@
     <app-text-input
   [formControl]="$any(registerForm.controls['country'])"
   [label] = "'Country'"
+  ></app-text-input> -->
+
+  <app-text-input
+  [formControl]="$any(registerForm.controls['email'])"
+  [label] = "'Email'"
   ></app-text-input>
 
   <app-text-input
