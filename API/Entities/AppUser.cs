@@ -10,8 +10,6 @@ public class AppUser : IdentityUser<int>
 
     public required string KnownAs { get; set; }
 
-    //public int Age { get; set; }
-
     public int YearsOfExperience { get; set; }
 
     public string? Specialization { get; set; }
@@ -29,9 +27,9 @@ public class AppUser : IdentityUser<int>
     // refactor to skills
     public string? Skills { get; set; }
 
-    public required string City { get; set; }
+    public string? City { get; set; }
 
-    public required string Country { get; set; }
+    public string? Country { get; set; }
 
     public List<Photo> Photos { get; set; } = [];
 
