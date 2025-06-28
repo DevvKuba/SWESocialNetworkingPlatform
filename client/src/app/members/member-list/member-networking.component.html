@@ -25,22 +25,6 @@
          <label class="col-form-label" style="margin-left: 5px">years</label>
       </div>
 
-      <!-- refactor to type of swe -->
-      <div class="d-flex mx-2">
-        <label class="col-form-label">Show: </label>
-        <select name="gender"
-         style="width:130px"
-         class="form-select ms-1"
-         [(ngModel)]="memberService.userParams().gender"
-          >
-          @for(gender of genderList; track gender.value){
-            <option [value]="gender.value">
-              {{gender.display}}
-            </option>
-          }
-        </select>
-      </div>
-
       <button class="btn btn-primary ms-1" type="submit">Apply Filters</button>
       <button (click)="resetFilters()" class="btn btn-info ms-1" type="button">Reset Filters</button>
 

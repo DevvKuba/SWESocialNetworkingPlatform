@@ -8,6 +8,8 @@ export class UserParams {
   pageSize = 5;
   orderBy = 'lastActive';
 
+  // makes sure the opposite gender is set , from our current user
+  // not utilized in refactor
   constructor(user: User | null){
     this.gender = user?.gender === 'female' ? 'male' : 'female'
   }
