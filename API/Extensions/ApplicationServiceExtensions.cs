@@ -18,7 +18,7 @@ namespace API.Extensions
             // database setup
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
 
             // allows cross origin resource sharing
