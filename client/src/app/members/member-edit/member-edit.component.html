@@ -46,7 +46,11 @@
           <div>
             <strong>Location:</strong>
             <p>
-              {{member.city}}, {{member.country}}
+              @if(member.city || member.country){
+                {{member.city}} {{member.country}}
+              } @else {
+                not specified
+              }
             </p>
           </div>
           <div>

@@ -12,10 +12,6 @@ namespace API.DTO_s
 
         [Required] public string? DateOfBirth { get; set; }
 
-        //[Required] public string? City { get; set; }
-
-        //[Required] public string? Country { get; set; }
-
         [Required] public string? Specialization { get; set; }
 
         [Required] public int? yearsOfExperience { get; set; }
