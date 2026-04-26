@@ -34,8 +34,11 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
 
-            // sets our default mapper to the one specificed through our AutoMapperProfiles.cs
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(config => 
+            {
+                config.AddMaps(AppDomain.CurrentDomain.GetAssemblies());
+            }, AppDomain.CurrentDomain.GetAssemblies());
+
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddSignalR();
             // always be available and shared when application is running
