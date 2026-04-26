@@ -20,8 +20,7 @@ Added protection for:
 - `client/ssl/*.pem` - SSL certificate files
 - `client/ssl/*.key` - SSL private key files
 - `secrets.json` - User secrets
-- `.env` - Environment variables
-- `.env.local` - Local environment overrides
+- `.env` - Environment variables- `.env.local` - Local environment overrides
 
 Exceptions:
 - `!API/appsettings.*.template.json` - Template files ARE tracked (safe)
