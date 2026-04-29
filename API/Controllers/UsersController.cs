@@ -54,7 +54,7 @@ namespace API.Controllers
 
             if (user == null) return BadRequest("Could not find user");
 
-            mapper.Map(memberUpdateDto, user);
+            mapper.Map(memberUpdateDto, user!);
 
 
             if (await unitOfWork.Complete()) return NoContent();
@@ -76,8 +76,8 @@ namespace API.Controllers
 
             var photo = new Photo
             {
-                Url = result.SecureUrl.AbsoluteUri,
-                PublicId = result.PublicId,
+                Url = result.SecureUrl!.AbsoluteUri,
+                PublicId = result.PublicId!,
             };
 
             // auto sets to main photo if its their first photo
@@ -94,11 +94,10 @@ namespace API.Controllers
         public async Task<ActionResult> SetMainPhoto(int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
-            // User.GetUsername() interprested as ClaimsPrincipleExtensions.GetUsername(User)
 
             if (user == null) return BadRequest("Could not find user");
 
-            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            var photo = user!.Photos.FirstOrDefault(x => x.Id == photoId);
 
             if (photo == null || photo.IsMain) return BadRequest("Cannot use this as a main photo");
 

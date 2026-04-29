@@ -29,10 +29,10 @@ namespace API.Controllers
 
             var message = new Message
             {
-                Sender = sender,
-                Recipient = recipient,
-                SenderUsername = sender.UserName,
-                RecipientUsername = recipient.UserName,
+                Sender = sender!,
+                Recipient = recipient!,
+                SenderUsername = sender.UserName!,
+                RecipientUsername = recipient.UserName!,
                 Content = createMessageDto.Content,
             };
 

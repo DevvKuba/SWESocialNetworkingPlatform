@@ -22,7 +22,7 @@ namespace API.Controllers
             {
                 var like = new UserLike
                 {
-                    SourceUserId = sourceUserId,
+                    SourceUserId = sourceUserId!,
                     TargetUserId = targetUserId,
                 };
 

@@ -52,7 +52,7 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             userParams.PageSize);
     }
 
-    public async Task<AppUser>? GetUserByIdAsync(int id)
+    public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         return await context.Users.FindAsync(id);
     }
@@ -66,7 +66,7 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             .FirstOrDefaultAsync(x => x.Photos.Any(x => x.Id == photoId));
     }
 
-    public async Task<AppUser>? GetUserByUsernameAsync(string username)
+    public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await context.Users
             .Include(x => x.Photos)

@@ -32,7 +32,7 @@ export class MessageService {
     .build();
 
     this.hubConnection.start().catch(error => console.log(error))
-    .finally(() => this.busyService.idle);
+    .finally(() => this.busyService.idle());
 
     this.hubConnection.on('ReceiveMessageThread', messages => {
       this.messageThread.set(messages);

@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     // figure out if needed
     //[Authorize]
-    public class AdminController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager, IMapper mapper) : BaseApiController
+    public class AdminController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager) : BaseApiController
     {
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
