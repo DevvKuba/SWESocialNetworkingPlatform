@@ -23,8 +23,6 @@ export class FollowService {
 
     params = params.append('predicate', predicate);
 
-    // ?predicate is a way to set a variable for a select http request
-    // check if this returns correctly
     return this.http.get<Member[]>(`${this.baseUrl}likes?`, {observe: 'response', params})
     .subscribe({
       next: response => setPaginatedResponse(response, this.paginatedResult)

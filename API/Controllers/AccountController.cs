@@ -32,8 +32,6 @@ namespace API.Controllers
                 Token = await tokenService.CreateToken(user),
                 KnownAs = user.KnownAs,
                 Gender = user.Gender,
-
-
             };
         }
 
