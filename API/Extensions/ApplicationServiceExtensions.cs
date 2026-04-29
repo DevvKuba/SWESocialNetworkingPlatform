@@ -41,7 +41,6 @@ namespace API.Extensions
 
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddSignalR();
-            // always be available and shared when application is running
             services.AddSingleton<PresenceTracker>();
 
 

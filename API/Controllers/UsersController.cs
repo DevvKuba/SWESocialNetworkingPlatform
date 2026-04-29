@@ -94,7 +94,6 @@ namespace API.Controllers
         public async Task<ActionResult> SetMainPhoto(int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
-            // User.GetUsername() interprested as ClaimsPrincipleExtensions.GetUsername(User)
 
             if (user == null) return BadRequest("Could not find user");
 
