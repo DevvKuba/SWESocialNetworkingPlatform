@@ -65,7 +65,7 @@ namespace API.SignalR
             var group = await unitOfWork.MessageRepository.GetMessageGroup(groupName);
 
             // recipient is connected / "active"
-            if (group != null && group.Connections.Any(x => x.Username == recipient.UserName))
+            if (group != null && group.Connections.Any(x => x.UserId == recipient.Id))
             {
                 message.DateRead = DateTime.UtcNow;
             }
@@ -94,9 +94,9 @@ namespace API.SignalR
 
         private async Task<Group> AddToGroup(string groupName)
         {
-            var username = Context.User?.GetUsername() ?? throw new Exception("Cannot get username");
+            var userId = Context.User?.GetUserId() ?? throw new Exception("Cannot get user Id");
             var group = await unitOfWork.MessageRepository.GetMessageGroup(groupName);
-            var connection = new Connection { ConnectionId = Context.ConnectionId, Username = username };
+            var connection = new Connection { ConnectionId = Context.ConnectionId, UserId = userId };
 
             if (group == null)
             {

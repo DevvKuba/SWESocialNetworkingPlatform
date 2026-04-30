@@ -22,10 +22,10 @@ export class MessageService {
   paginatedResult = signal<PaginatedResult<Message[]> | null>(null);
   messageThread = signal<Message[]>([]);
 
-  createHubConnection(user: User, otherUsername: string){
+  createHubConnection(user: User, otherUserId: number){
     this.busyService.busy();
     this.hubConnection = new HubConnectionBuilder()
-    .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
+    .withUrl(this.hubUrl + 'message?userId=' + otherUserId, {
       accessTokenFactory: () => user.token
     })
     .withAutomaticReconnect()
@@ -44,7 +44,7 @@ export class MessageService {
 
     // loops through specific messages to update them in our Thread between the users
     this.hubConnection.on('UpdatedGroup', (group: Group) => {
-      if(group.connections.some(x => x.username === otherUsername)){
+      if(group.connections.some(x => x.userId === otherUserId)){
         this.messageThread.update(messages => {
           messages.forEach(message => {
             if(!message.dateRead){

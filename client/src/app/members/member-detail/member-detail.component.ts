@@ -64,7 +64,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     if(!user) return;
     if(this.messageService.hubConnection?.state === HubConnectionState.Connected && this.activeTab?.heading === 'Messages'){
       this.messageService.hubConnection.stop().then(() => {
-        this.messageService.createHubConnection(user, this.member.username);
+        this.messageService.createHubConnection(user, this.member.id);
       })
     }
   }
@@ -79,7 +79,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     if(this.activeTab.heading === 'Messages' && this.member){
       const user = this.accountService.currentUser();
       if(!user) return;
-      this.messageService.createHubConnection(user, this.member.username);
+      this.messageService.createHubConnection(user, this.member.id);
     }else {
       this.messageService.stopHubConnection();
     }
