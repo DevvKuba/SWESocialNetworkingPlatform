@@ -33,14 +33,15 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            var currentUsername = User.Identity?.Name;
-            if (currentUsername == null) return BadRequest("No one is logged in, cannot proceed");
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
-            var user = await unitOfWork.UserRepository.GetMemberAsync(currentUsername, username);
+            if (user == null) return NotFound("No one is logged in, cannot proceed");
 
-            if (user == null) { return NotFound(); }
+            if (user.UserName == null) return BadRequest("User does not have a username");
 
-            return user;
+            var memberDto = await unitOfWork.UserRepository.GetMemberAsync(user.UserName, username);
+
+            return memberDto!;
 
         }
 
@@ -48,7 +49,6 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
-
             // user from datbase aquired by entity framework
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
