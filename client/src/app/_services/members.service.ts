@@ -47,15 +47,15 @@ export class MembersService {
     })
   }
 
-  getMember(username: string){
+  getMember(userId: number){
     // adds all members on given page to memberCache
     const member: Member = [...this.memberCache.values()]
     .reduce((arr, elem) => arr.concat(elem.body), [])
-    .find((m:Member) => m.username === username);
+    .find((m:Member) => m.id === userId);
 
     if(member) return of(member);
   
-    return this.http.get<Member>(this.baseUrl + 'users/' + username);
+    return this.http.get<Member>(this.baseUrl + 'users/GetUserById');
   }
 
   // calls put request from our api, that updates member data in database

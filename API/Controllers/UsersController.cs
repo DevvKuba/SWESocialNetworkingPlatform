@@ -30,8 +30,8 @@ namespace API.Controllers
         }
 
         // route parameter
-        [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDto>> GetUser(string username)
+        [HttpGet("GetUserById")]
+        public async Task<ActionResult<MemberDto>> GetUserAsync()
         {
             var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
@@ -39,7 +39,7 @@ namespace API.Controllers
 
             if (user.UserName == null) return BadRequest("User does not have a username");
 
-            var memberDto = await unitOfWork.UserRepository.GetMemberAsync(user.UserName, username);
+            var memberDto = await unitOfWork.UserRepository.GetMemberAsync(user.UserName);
 
             return memberDto!;
 
@@ -47,7 +47,7 @@ namespace API.Controllers
 
         // put requests to update database
         [HttpPut]
-        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        public async Task<ActionResult> UpdateUserAsync(MemberUpdateDto memberUpdateDto)
         {
             // user from datbase aquired by entity framework
             var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
@@ -63,7 +63,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add-photo")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
+        public async Task<ActionResult<PhotoDto>> AddPhotoAsync(IFormFile file)
         {
             var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
@@ -84,13 +84,13 @@ namespace API.Controllers
 
             user.Photos.Add(photo);
             if (await unitOfWork.Complete())
-                return CreatedAtAction(nameof(GetUser), new { username = user.UserName }, mapper.Map<PhotoDto>(photo));
+                return CreatedAtAction(nameof(GetUserAsync), new { username = user.UserName }, mapper.Map<PhotoDto>(photo));
             // adds a location header of the user, to our response
             return BadRequest("Photos couldn't be added");
         }
 
         [HttpPut("set-main-photo/{photoId:int}")]
-        public async Task<ActionResult> SetMainPhoto(int photoId)
+        public async Task<ActionResult> SetMainPhotoAsync(int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
@@ -111,7 +111,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("delete-photo/{photoId:int}")]
-        public async Task<ActionResult> DeletePhoto(int photoId)
+        public async Task<ActionResult> DeletePhotoAsync(int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 

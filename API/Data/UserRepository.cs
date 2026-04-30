@@ -11,18 +11,8 @@ namespace API;
 // where we aquire methods that interact with the database 
 public class UserRepository(DataContext context, IMapper mapper) : IUserRepository
 {
-    public async Task<MemberDto?> GetMemberAsync(string loggedInUsername, string username)
+    public async Task<MemberDto?> GetMemberAsync(string username)
     {
-        // if user is logged in then ignoreQueryFilter
-        if (loggedInUsername == username)
-        {
-            return await context.Users
-            .Where(x => x.UserName == username)
-            .IgnoreQueryFilters()
-            .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-            .SingleOrDefaultAsync();
-        }
-
         return await context.Users
             // use normalisedUser == username.ToUpper() if need be
             .Where(x => x.UserName == username)
