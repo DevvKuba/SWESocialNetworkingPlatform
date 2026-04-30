@@ -23,7 +23,7 @@ namespace API.SignalR
 
             await Clients.Group(groupName).SendAsync("UpdatedGroup", group);
 
-            var messages = await unitOfWork.MessageRepository.GetMessageThread(Context.User.GetUsername(), otherUser!);
+            var messages = await unitOfWork.MessageRepository.GetMessageThread(Context.User.GetUserId(), otherUser!);
 
             if (unitOfWork.HasChanges()) await unitOfWork.Complete();
 
@@ -40,14 +40,14 @@ namespace API.SignalR
 
         public async Task SendMessage(CreateMessageDto createMessageDto)
         {
-            var username = Context.User?.GetUsername() ?? throw new Exception("could not get user");
-            if (username == createMessageDto.RecipientUsername.ToLower())
+            var userId = Context.User?.GetUserId() ?? throw new Exception("could not get user");
+            if (userId == createMessageDto.RecipientId)
             {
                 throw new HubException("You cannot message yourself");
             }
 
-            var sender = await unitOfWork.UserRepository.GetUserByUsernameAsync(username);
-            var recipient = await unitOfWork.UserRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
+            var sender = await unitOfWork.UserRepository.GetUserByIdAsync(userId);
+            var recipient = await unitOfWork.UserRepository.GetUserByIdAsync(createMessageDto.RecipientId);
 
             if (recipient == null || sender == null || sender.UserName == null || recipient.UserName == null)
                 throw new HubException("Cannot send message at this time");
