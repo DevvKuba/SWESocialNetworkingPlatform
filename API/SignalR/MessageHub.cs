@@ -13,17 +13,25 @@ namespace API.SignalR
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
-            var otherUser = httpContext?.Request.Query["user"];
-            if (Context.User == null || string.IsNullOrWhiteSpace(otherUser)) throw new Exception("Cannot join group");
+            var otherUserIdString = httpContext?.Request.Query["userId"];
+            
+            if (Context.User == null || string.IsNullOrEmpty(otherUserIdString)) throw new Exception("Cannot join group");
 
-            var groupName = GetGroupName(Context.User.GetUsername(), otherUser);
+            int otherUserId = int.Parse(otherUserIdString!);
+            var otherUser = await unitOfWork.UserRepository.GetUserByIdAsync(otherUserId);
+
+            if (otherUser == null) throw new Exception("Other user no longer exists");
+
+            if (otherUser.UserName == null) throw new Exception("Username must be set in order to join a group");
+
+            var groupName = GetGroupName(Context.User.GetUsername(), otherUser.UserName);
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
             var group = await AddToGroup(groupName);
 
             await Clients.Group(groupName).SendAsync("UpdatedGroup", group);
 
-            var messages = await unitOfWork.MessageRepository.GetMessageThread(Context.User.GetUserId(), otherUser!);
+            var messages = await unitOfWork.MessageRepository.GetMessageThread(Context.User.GetUserId(), otherUserId);
 
             if (unitOfWork.HasChanges()) await unitOfWork.Complete();
 
