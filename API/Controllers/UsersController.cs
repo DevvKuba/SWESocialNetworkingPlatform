@@ -21,7 +21,7 @@ namespace API.Controllers
         // specifices to look in query string => [FromQuery]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
-            userParams.CurrentUserName = User.GetUsername();
+            userParams.CurrentUserId = User.GetUserId();
             var users = await unitOfWork.UserRepository.GetMembersAsync(userParams);
 
             Response.AddPaginationHeader(users);

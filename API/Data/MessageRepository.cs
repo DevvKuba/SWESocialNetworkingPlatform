@@ -73,8 +73,8 @@ namespace API.Data
         {
             var query = context.Messages
                 // messages gathered regardless of who sent them
-                .Where(x => x.RecipientId == senderId && x.RecipientDeleted == false && x.SenderId == recipientId ||
-                x.SenderId == senderId && x.SenderDeleted == false && x.RecipientId == recipientId)
+                .Where(m => m.RecipientId == senderId && m.RecipientDeleted == false && m.SenderId == recipientId ||
+                m.SenderId == senderId && m.SenderDeleted == false && m.RecipientId == recipientId)
                 .OrderBy(x => x.MessageSent)
                 .AsQueryable();
 
