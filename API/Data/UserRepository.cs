@@ -52,7 +52,7 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             userParams.PageSize);
     }
 
-    public async Task<AppUser?> GetUserByIdAsync(int? id)
+    public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         var user = await context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
         return user;

@@ -58,9 +58,9 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
-                "Inbox" => query.Where(x => x.Recipient.UserName == messageParams.Username && x.RecipientDeleted == false),
-                "Outbox" => query.Where(x => x.Sender.UserName == messageParams.Username && x.SenderDeleted == false),
-                _ => query.Where(x => x.Recipient.UserName == messageParams.Username && x.DateRead == null && x.RecipientDeleted == false),
+                "Inbox" => query.Where(x => x.Recipient.Id == messageParams.Id && x.RecipientDeleted == false),
+                "Outbox" => query.Where(x => x.Sender.Id == messageParams.Id && x.SenderDeleted == false),
+                _ => query.Where(x => x.Recipient.Id == messageParams.Id && x.DateRead == null && x.RecipientDeleted == false),
             };
 
             // instead of querying whole database, ensures only MessageDto fields are selected

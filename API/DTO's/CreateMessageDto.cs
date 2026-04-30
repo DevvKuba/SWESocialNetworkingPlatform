@@ -2,7 +2,7 @@
 {
     public class CreateMessageDto
     {
-        public required string RecipientUsername { get; set; }
+        public required int RecipientId { get; set; }
 
         public required string Content { get; set; }
     }

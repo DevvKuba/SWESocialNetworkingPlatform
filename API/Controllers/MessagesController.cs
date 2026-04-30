@@ -15,16 +15,17 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessageDto)
         {
-            var username = User.GetUsername();
-            if (username == createMessageDto.RecipientUsername.ToLower())
+            var userId = User.GetUserId();
+
+            if (userId == createMessageDto.RecipientId)
             {
                 return BadRequest("You cannot message yourself");
             }
 
-            var sender = await unitOfWork.UserRepository.GetUserByUsernameAsync(username);
-            var recipient = await unitOfWork.UserRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
+            var sender = await unitOfWork.UserRepository.GetUserByIdAsync(userId);
+            var recipient = await unitOfWork.UserRepository.GetUserByIdAsync(createMessageDto.RecipientId);
 
-            if (recipient == null || sender == null || sender.UserName == null || recipient.UserName == null)
+            if (recipient == null || sender == null)
                 return BadRequest("Cannot send message at this time");
 
             var message = new Message
@@ -46,7 +47,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
         {
-            messageParams.Username = User.GetUsername();
+            messageParams.Id = User.GetUserId();
 
             var messages = await unitOfWork.MessageRepository.GetMessagesForUser(messageParams);
 
