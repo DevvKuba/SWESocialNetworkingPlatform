@@ -69,16 +69,16 @@ namespace API.Data
             return await PagedList<MessageDto>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
 
-        public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
+        public async Task<IEnumerable<MessageDto>> GetMessageThread(int senderId, int recipientId)
         {
             var query = context.Messages
                 // messages gathered regardless of who sent them
-                .Where(x => x.RecipientUsername == currentUsername && x.RecipientDeleted == false && x.SenderUsername == recipientUsername ||
-                x.SenderUsername == currentUsername && x.SenderDeleted == false && x.RecipientUsername == recipientUsername)
+                .Where(x => x.RecipientId == senderId && x.RecipientDeleted == false && x.SenderId == recipientId ||
+                x.SenderId == senderId && x.SenderDeleted == false && x.RecipientId == recipientId)
                 .OrderBy(x => x.MessageSent)
                 .AsQueryable();
 
-            var unreadMessages = query.Where(x => x.DateRead == null && x.RecipientUsername == currentUsername).ToList();
+            var unreadMessages = query.Where(x => x.DateRead == null && x.RecipientId == senderId).ToList();
 
             if (unreadMessages.Count != 0)
             {

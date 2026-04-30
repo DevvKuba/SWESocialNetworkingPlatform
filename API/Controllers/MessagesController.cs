@@ -57,26 +57,26 @@ namespace API.Controllers
         }
 
         [HttpGet("thread/{username}")]
-        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string username)
+        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(int recipientId)
         {
-            var currentUsername = User.GetUsername();
+            var senderId = User.GetUserId();
 
-            return Ok(await unitOfWork.MessageRepository.GetMessageThread(currentUsername, username));
+            return Ok(await unitOfWork.MessageRepository.GetMessageThread(senderId, recipientId));
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMessage(int id)
         {
-            var username = User.GetUsername();
+            var userId = User.GetUserId();
             var message = await unitOfWork.MessageRepository.GetMessage(id);
 
             if (message == null) return BadRequest("Cannot delete this message");
 
             // check if the person deleting is either the sender or reciever of the message
-            if (message.SenderUsername != username && message.RecipientUsername != username) return Forbid();
+            if (message.SenderId != userId && message.RecipientId != userId) return Forbid();
 
-            if (message.SenderUsername == username) message.SenderDeleted = true;
-            if (message.RecipientUsername == username) message.RecipientDeleted = true;
+            if (message.SenderId == userId) message.SenderDeleted = true;
+            if (message.RecipientId == userId) message.RecipientDeleted = true;
 
             if (message is { SenderDeleted: true, RecipientDeleted: true })
             {

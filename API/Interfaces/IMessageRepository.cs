@@ -14,7 +14,7 @@ namespace API.Interfaces
 
         Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams);
 
-        Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername);
+        Task<IEnumerable<MessageDto>> GetMessageThread(int senderId, int recipientId);
 
         void AddGroup(Group group);
 
