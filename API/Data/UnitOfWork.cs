@@ -21,7 +21,6 @@ namespace API.Data
 
         public bool HasChanges()
         {
-            // returns true if there are any tracker entities in the context that have been modified
             return context.ChangeTracker.HasChanges();
         }
     }

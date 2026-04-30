@@ -52,9 +52,10 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             userParams.PageSize);
     }
 
-    public async Task<AppUser?> GetUserByIdAsync(int id)
+    public async Task<AppUser?> GetUserByIdAsync(int? id)
     {
-        return await context.Users.FindAsync(id);
+        var user = await context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+        return user;
     }
 
     // method created in order to find user via photoId but also include their photos
@@ -64,13 +65,6 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             .Include(x => x.Photos)
             .IgnoreQueryFilters()
             .FirstOrDefaultAsync(x => x.Photos.Any(x => x.Id == photoId));
-    }
-
-    public async Task<AppUser?> GetUserByUsernameAsync(string username)
-    {
-        return await context.Users
-            .Include(x => x.Photos)
-            .SingleOrDefaultAsync(x => x.UserName == username);
     }
 
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
