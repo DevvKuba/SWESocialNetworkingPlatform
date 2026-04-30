@@ -50,12 +50,11 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
             // user from datbase aquired by entity framework
-            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
             if (user == null) return BadRequest("Could not find user");
 
             mapper.Map(memberUpdateDto, user!);
-
 
             if (await unitOfWork.Complete()) return NoContent();
 
@@ -66,7 +65,7 @@ namespace API.Controllers
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
-            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
             if (user == null) return BadRequest("Cannot update user");
 
@@ -81,7 +80,7 @@ namespace API.Controllers
             };
 
             // auto sets to main photo if its their first photo
-            //if (user.Photos.Count == 0) photo.IsMain = true;
+            if (user.Photos.Count == 0) photo.IsMain = true;
 
             user.Photos.Add(photo);
             if (await unitOfWork.Complete())
@@ -93,7 +92,7 @@ namespace API.Controllers
         [HttpPut("set-main-photo/{photoId:int}")]
         public async Task<ActionResult> SetMainPhoto(int photoId)
         {
-            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
             if (user == null) return BadRequest("Could not find user");
 
@@ -114,7 +113,7 @@ namespace API.Controllers
         [HttpDelete("delete-photo/{photoId:int}")]
         public async Task<ActionResult> DeletePhoto(int photoId)
         {
-            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
 
             if (user == null) return BadRequest("User not found");
 
