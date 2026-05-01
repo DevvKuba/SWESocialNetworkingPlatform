@@ -41,7 +41,7 @@ export class UserManagementComponent implements OnInit {
         if(this.bsModalRef.content && this.bsModalRef.content.rolesUpdated){
           const selectedRoles = this.bsModalRef.content.selectedRoles;
           // calls post request to update user roles
-          this.adminService.updateUserRoles(user.username, selectedRoles).subscribe({
+          this.adminService.updateUserRoles(user.id, selectedRoles).subscribe({
             next: roles => user.roles = roles
           })
         }
