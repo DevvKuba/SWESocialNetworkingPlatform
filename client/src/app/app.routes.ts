@@ -24,7 +24,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: 'members', component: MemberNetworkingComponent},
-      {path: 'members/:username', component: MemberDetailComponent,
+      {path: 'members/:id', component: MemberDetailComponent,
        resolve: {member: memberDetailedResolver}},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate:[preventUnsavedChangesGuard]},
       {path: 'insights', component: InsightsComponent},
