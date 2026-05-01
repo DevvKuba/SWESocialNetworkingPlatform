@@ -31,9 +31,9 @@ namespace API.Controllers
 
         // route parameter
         [HttpGet("GetUserById")]
-        public async Task<ActionResult<MemberDto>> GetUserAsync()
+        public async Task<ActionResult<MemberDto>> GetUserAsync([FromQuery] int userId)
         {
-            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(userId);
 
             if (user == null) return NotFound("No one is logged in, cannot proceed");
 

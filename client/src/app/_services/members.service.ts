@@ -55,7 +55,7 @@ export class MembersService {
 
     if(member) return of(member);
   
-    return this.http.get<Member>(this.baseUrl + 'users/GetUserById');
+    return this.http.get<Member>(this.baseUrl + `users/GetUserById?userId=${userId}`);
   }
 
   // calls put request from our api, that updates member data in database
