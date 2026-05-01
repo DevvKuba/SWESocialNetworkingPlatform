@@ -67,8 +67,7 @@ export class MessageService {
     let params = setPaginationHeaders(pageNumber, pageSize);
     params = params.append('Container', container);
 
-    return this.http.get<Message[]>(this.baseUrl + 'messages', {observe: 'response', params})
-    .subscribe({
+    return this.http.get<Message[]>(this.baseUrl + 'messages', {observe: 'response', params}).subscribe({
       next: response => setPaginatedResponse(response, this.paginatedResult)
     })
   }

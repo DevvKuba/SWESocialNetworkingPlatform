@@ -60,42 +60,16 @@ export class MembersService {
 
   // calls put request from our api, that updates member data in database
   updateMember(member: Member){
-    return this.http.put(this.baseUrl + 'users', member).pipe(
-      // tap(() => {
-      //   this.members.update(members => members.map(m => m.username === member.username ? member : m))
-      // })
-    )
+    return this.http.put(this.baseUrl + 'users', member);
   }
 
 
   setMainPhoto(photo: Photo){
-    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photo.id, {})
-    // below functionality updates the members array , specifically m or member making sure it includes the photo
-    // m.photoUrl being equal to the passed photo.url, clicked photo
-    .pipe(
-      // tap(() => {
-      //   this.members.update(members => members.map(m => {
-      //     if(m.photos.includes(photo)){
-      //       m.photoUrl = photo.url
-      //     }
-      //     return m;
-      //   }))
-      // })
-    )
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photo.id, {});
   }
 
   deletePhoto(photo: Photo){
-    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photo.id).pipe(
-      // tap(() => {
-      //   this.members.update(members => members.map(m => {
-      //     // if members arr still includes photo we deleted filter it from the array
-      //     if(m.photos.includes(photo)){
-      //       m.photos = m.photos.filter(x => x.id !== photo.id)
-      //     }
-      //     return m;
-      //   }))
-      // })
-    );
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photo.id);
   }
 
   
