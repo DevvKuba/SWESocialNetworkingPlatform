@@ -98,6 +98,9 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+# Docker
+docker-compose.yml
+
 # Chutzpah Test files
 _Chutzpah*
 
@@ -142,6 +145,7 @@ _TeamCity*
 .axoCover/*
 !.axoCover/settings.json
 
+# Coverlet is a free, cross platform Code Coverage Tool
 # Coverlet is a free, cross platform Code Coverage Tool
 coverage*.json
 coverage*.xml

@@ -9,10 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    // Primary constructor injecting DataContext
-    // context or users endpoint
-
-
     // user needs to be autherized / logged in before utilising get requests
     [Authorize]
     public class UsersController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService) : BaseApiController

@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    // figure out if needed
-    //[Authorize]
     public class AdminController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager) : BaseApiController
     {
         [Authorize(Policy = "RequireAdminRole")]
@@ -59,7 +57,6 @@ namespace API.Controllers
         {
             var photos = await unitOfWork.PhotoRepository.GetUnapprovedPhotos();
 
-            // Ok(photos) provides a Http status code amd context return rather than just a List<> of data
             return Ok(photos);
         }
 
@@ -99,7 +96,6 @@ namespace API.Controllers
             return BadRequest("Database was not updated after rejecting the photo");
 
         }
-
 
     }
 }
