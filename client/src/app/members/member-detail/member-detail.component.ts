@@ -34,7 +34,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.data.subscribe({
       next: data => {
-        this.member = data['member'];
+        this.member = data['member']; // gets the resolved member
          this.member && this.member.photos.map(p=> {
         this.images.push(new ImageItem({src: p.url, thumb: p.url}))
       })

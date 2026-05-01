@@ -26,7 +26,7 @@ export class MembersService {
     this.userParams.set(new UserParams(this.user));
   }
 
-  // gets members from the API and stores them in memory(in the signal);
+  // gets members from the API and stored in the cache;
   getMembers(){
     const response = this.memberCache.get(Object.values(this.userParams()).join('-'));
 
