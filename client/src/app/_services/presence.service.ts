@@ -14,7 +14,7 @@ export class PresenceService {
   private hubConnection?: HubConnection;
   private toastr = inject(ToastrService);
   private router = inject(Router);
-  onlineUsers = signal<string[]>([]);
+  onlineUsers = signal<number[]>([]);
 
   createHubConnection(user: User){
     this.hubConnection = new HubConnectionBuilder()
@@ -26,24 +26,24 @@ export class PresenceService {
     this.hubConnection.start().catch(error => console.log(error));
 
     // handlers are set up
-    this.hubConnection.on('UserIsOnline', username => {
-      this.onlineUsers.update(users => [...users, username]);
+    this.hubConnection.on('UserIsOnline', userId => {
+      this.onlineUsers.update(users => [...users, userId]);
     });
 
-    this.hubConnection.on('UserIsOffline', username => {
-      this.onlineUsers.update(users => users.filter(x => x !== username));
+    this.hubConnection.on('UserIsOffline', userId => {
+      this.onlineUsers.update(users => users.filter(x => x !== userId));
     });
 
-    this.hubConnection.on('GetOnlineUsers', usernames => {
-      this.onlineUsers.set(usernames)
+    this.hubConnection.on('GetOnlineUsers', userIds => {
+      this.onlineUsers.set(userIds)
       
     });
 
-    this.hubConnection.on('NewMessageReceived', ({username, knownAs}) => {
+    this.hubConnection.on('NewMessageReceived', ({userId, knownAs}) => {
       this.toastr.info(knownAs + ' has sent you a new message! Click me to see it')
       .onTap
       .pipe(take(1))
-      .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=Messages'))
+      .subscribe(() => this.router.navigateByUrl('/members/' + userId + '?tab=Messages'))
     })
   }
 

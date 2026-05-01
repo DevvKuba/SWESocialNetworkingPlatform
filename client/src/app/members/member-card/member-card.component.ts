@@ -18,7 +18,7 @@ export class MemberCardComponent {
   // member is a signal: needs to be called like so member() to access its properties
   member = input.required<Member>();
   hasLiked = computed(() => this.likeService.followIds().includes(this.member().id));
-  isOnline = computed(() => this.presenceService.onlineUsers().includes(this.member().username));
+  isOnline = computed(() => this.presenceService.onlineUsers().includes(this.member().id));
 
   toggleLike(){
     this.likeService.toggleFollow(this.member().id).subscribe({
