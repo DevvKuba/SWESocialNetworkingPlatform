@@ -20,10 +20,10 @@
                   <div class="header">
                     <small class="text-muted">
                       <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
-                      @if(!message.dateRead && message.senderUsername !== username()){
+                      @if(!message.dateRead && message.senderId !== userId){
                         <span class="text-danger">(unread)</span>
                       }
-                    @if(message.dateRead && message.senderUsername !== username()){
+                    @if(message.dateRead && message.senderId !== userId){
                       <span class="text-success">(read {{message.dateRead | timeago}})</span>
                     }
                     </small>
