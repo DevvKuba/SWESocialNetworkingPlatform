@@ -29,8 +29,8 @@ export class MessagesComponent implements OnInit {
   }
 
   getRoute(message: Message){
-    if(this.container == 'Outbox') return `/members/${message.recipientUsername}`;
-    else return `/members/${message.senderUsername}`;
+    if(this.container == 'Outbox') return `/members/${message.recipientId}`;
+    else return `/members/${message.senderId}`;
   }
 
   pageChanged(event: any){
