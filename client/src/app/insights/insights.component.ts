@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MemberCardComponent } from "../members/member-card/member-card.component";
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { setPaginatedResponse } from '../_services/paginationHelper';
 
 @Component({
   selector: 'app-insights',
@@ -30,7 +31,9 @@ export class InsightsComponent implements OnInit,OnDestroy {
   }
 
   loadFollowers(){
-    this.likesService.getFollow(this.predicate, this.pageNumber, this.pageSize);
+    this.likesService.getFollow(this.predicate, this.pageNumber, this.pageSize).subscribe({
+      next: response => setPaginatedResponse(response, this.likesService.paginatedResult)
+    })
   }
 
   pageChanged(event: any){
