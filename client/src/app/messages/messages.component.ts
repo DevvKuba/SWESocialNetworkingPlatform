@@ -6,6 +6,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { Message } from '../_models/message';
 import { RouterLink } from '@angular/router';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { setPaginatedResponse } from '../_services/paginationHelper';
 
 @Component({
   selector: 'app-messages',
@@ -25,7 +26,11 @@ export class MessagesComponent implements OnInit {
   }
 
   loadMessages(){
-    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container);
+    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe({
+      next: (response) => {
+        setPaginatedResponse(response, this.messageService.paginatedResult)
+      }
+    });
   }
 
   getRoute(message: Message){
