@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { FollowService } from './follow.service';
 import { PresenceService } from './presence.service';
@@ -27,7 +27,7 @@ export class AccountService {
     return [null];
   })
 
-  login(model: any){
+  login(model: any) : Observable<void>{
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map(user => {
         if(user){
@@ -37,7 +37,7 @@ export class AccountService {
     )
   }
 
-  register(model: any){
+  register(model: any) : Observable<User>{
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if(user){
@@ -48,14 +48,14 @@ export class AccountService {
     )
   }
 
-  setCurrentUser(user: User){
+  setCurrentUser(user: User) : void{
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUser.set(user);
     this.likeService.getFollowIds();
     this.presenceService.createHubConnection(user);
   }
 
-  logout(){
+  logout() : void{
     localStorage.removeItem('user');
     this.currentUser.set(null);
     this.presenceService.stopHubConnection();
