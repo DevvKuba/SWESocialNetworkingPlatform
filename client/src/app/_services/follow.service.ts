@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
 import { setPaginatedResponse, setPaginationHeaders } from './paginationHelper';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class FollowService {
   followIds = signal<number[]>([]);
   paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
 
-  toggleFollow(targetId: number){
+  toggleFollow(targetId: number) : Observable<Object>{
     return this.http.post(`${this.baseUrl}likes/${targetId}`, {})
   }
 

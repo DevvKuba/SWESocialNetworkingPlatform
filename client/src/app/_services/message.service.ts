@@ -9,6 +9,7 @@ import signalR, { HubConnection, HubConnectionBuilder, HubConnectionState } from
 import { User } from '../_models/user';
 import { Group } from '../modals/group';
 import { BusyService } from './busy.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class MessageService {
   paginatedResult = signal<PaginatedResult<Message[]> | null>(null);
   messageThread = signal<Message[]>([]);
 
-  createHubConnection(user: User, otherUserId: number){
+  createHubConnection(user: User, otherUserId: number) : void{
     this.busyService.busy();
     this.hubConnection = new HubConnectionBuilder()
     .withUrl(this.hubUrl + 'message?userId=' + otherUserId, {
@@ -57,7 +58,7 @@ export class MessageService {
     })
   }
 
-  stopHubConnection(){
+  stopHubConnection() : void{
     if(this.hubConnection?.state === HubConnectionState.Connected){
       this.hubConnection.stop().catch(error => console.log(error))
     }
@@ -72,15 +73,15 @@ export class MessageService {
     })
   }
 
-  getMessageThread(username: string){
+  getMessageThread(username: string) : Observable<Message[]>{
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 
-  async sendMessage(userId: number, content:string){
+  async sendMessage(userId: number, content:string) : Promise<any>{
     return this.hubConnection?.invoke('SendMessage', {recipientId: userId, content})
   }
 
-  deleteMessage(id: number){
+  deleteMessage(id: number) : Observable<Object>{
     return this.http.delete(this.baseUrl + 'messages/' + id);
   }
 }

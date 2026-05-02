@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmDialogComponent } from '../modals/confirm-dialog/confirm-dialog.component';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ConfirmService {
     message = 'Are you sure you want to do this',
     btnOkText = 'Ok',
     btnCancelText = 'Cancel',
-  ) {
+  ) : Observable<any> | undefined {
     const config: ModalOptions = {
       initialState: {
         title,

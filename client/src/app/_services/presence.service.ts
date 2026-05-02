@@ -16,7 +16,7 @@ export class PresenceService {
   private router = inject(Router);
   onlineUsers = signal<number[]>([]);
 
-  createHubConnection(user: User){
+  createHubConnection(user: User) : void{
     this.hubConnection = new HubConnectionBuilder()
     .withUrl(this.hubUrl + 'presence', {
       accessTokenFactory: () => user.token
@@ -47,7 +47,7 @@ export class PresenceService {
     })
   }
 
-  stopHubConnection(){
+  stopHubConnection() : void{
     if(this.hubConnection?.state === HubConnectionState.Connected){
       this.hubConnection.stop().catch(error => console.log(error));
     }
