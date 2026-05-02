@@ -5,7 +5,6 @@ namespace API.Entities;
 // User Schema for the database
 public class AppUser : IdentityUser<int>
 {
-
     public DateOnly DateOfBirth { get; set; }
 
     public required string KnownAs { get; set; }
@@ -24,7 +23,6 @@ public class AppUser : IdentityUser<int>
 
     public string? Interests { get; set; }
 
-    // refactor to skills
     public string? Skills { get; set; }
 
     public string? City { get; set; }
