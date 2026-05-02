@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Member } from '../_models/member';
-import { of, tap } from 'rxjs';
+import { Observable, ObservableLike, of, tap } from 'rxjs';
 import { Photo } from '../_models/photo';
 import { PaginatedResult } from '../_models/pagination';
 import { UserParams } from '../_models/userParams';
@@ -47,11 +47,11 @@ export class MembersService {
     })
   }
 
-  getMember(userId: number){
+  getMember(userId: number) : Observable<Member> {
     // adds all members on given page to memberCache
     const member: Member = [...this.memberCache.values()]
     .reduce((arr, elem) => arr.concat(elem.body), [])
-    .find((m:Member) => m.id === userId);
+    .find((m:Member) => m.id === userId); 
 
     if(member) return of(member);
   
@@ -59,16 +59,16 @@ export class MembersService {
   }
 
   // calls put request from our api, that updates member data in database
-  updateMember(member: Member){
+  updateMember(member: Member) : Observable<Object>{
     return this.http.put(this.baseUrl + 'users', member);
   }
 
 
-  setMainPhoto(photo: Photo){
+  setMainPhoto(photo: Photo) : Observable<Object>{
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photo.id, {});
   }
 
-  deletePhoto(photo: Photo){
+  deletePhoto(photo: Photo) : Observable<Object>{
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photo.id);
   }
 
